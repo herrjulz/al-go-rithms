@@ -17,7 +17,7 @@ func PrimeByTrialDivision(number int) bool {
 	return number > 1
 }
 
-// Better Approach: Time Complexity -> O(SQRT(N))
+// Better Approach: Time Complexity -> O(n)
 func PrimeByTrialDivisionImproved(number int) bool {
 	for i := 2; i <= helpers.SquareRootOf(number); i++ {
 		if number%i == 0 {
