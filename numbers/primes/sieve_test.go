@@ -15,7 +15,7 @@ var _ = Describe("Sieve", func() {
 		})
 	})
 
-	Context("Sieve of Eratos Thenes", func() {
+	Context("Sieve of Eratosthenes", func() {
 		It("should return all primes up to a given number N", func() {
 			primes := Sieve(15)
 			Expect(primes).To(ConsistOf(2, 3, 5, 7, 11, 13))

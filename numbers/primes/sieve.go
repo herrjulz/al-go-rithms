@@ -29,8 +29,8 @@ func Sieve(number int) []int {
 
 	for i := 2; i <= helpers.SquareRootOf(number); i++ {
 		if primes[i] == false {
-			for j := 2; (i * j) <= number; j++ {
-				primes[i*j] = true
+			for j := i * i; j <= number; j += i {
+				primes[j] = true
 				primeCount++
 			}
 		}
