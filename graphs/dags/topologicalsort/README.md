@@ -3,18 +3,18 @@
 Algorithm:
 
 1. Init InDegree Array
-  1. Create Array of size `n`
-  1. Init all values with 0
-  1. For each vertex `u`
-    1. For each vertex `v` adjecent to `u`
-      1. Increment in-degree[v]
+  a) Create Array of size `n`
+  b) Init all values with 0
+  c) For each vertex `u`
+    - For each vertex `v` adjecent to `u`
+      - Increment in-degree[v]
 1. Init `Next` Array, consisting of all vertices `u`, s.t. `InDegree[u]=0`
 1. while `next` is not empty; Do
   a) Delete a vertex from `next`, call it `u`
   b) Add `u` to the end of the linar order
   c) For each vertex `v` adj. to `u`:
-    1. Decrement InDegree[v]
-    1. if `InDegree[v]=0`, then insert `v` into `next`
+    - Decrement InDegree[v]
+    - if `InDegree[v]=0`, then insert `v` into `next`
 1. return linear order
 
 ## Running Time
