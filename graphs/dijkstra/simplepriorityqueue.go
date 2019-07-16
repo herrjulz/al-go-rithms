@@ -5,14 +5,14 @@ type SimplePriorityQueue struct {
 }
 
 func NewSimplePriorityQueue() *SimplePriorityQueue {
-	return &SimplePriorityQueue{}
+	return &SimplePriorityQueue{q: []string{}}
 }
 
 func (s *SimplePriorityQueue) Insert(name string) {
 	s.q = append(s.q, name)
 }
 
-func (s SimplePriorityQueue) ExtractMin(shortest map[string]int) string {
+func (s *SimplePriorityQueue) ExtractMin(shortest map[string]int) string {
 	lowest := s.q[0]
 	index := 0
 	for i := 1; i < len(s.q); i++ {
@@ -25,7 +25,11 @@ func (s SimplePriorityQueue) ExtractMin(shortest map[string]int) string {
 	return lowest
 }
 
-func (s SimplePriorityQueue) remove(e int) {
-	s.q[e] = s.q[len(s.q)-1]
+func (s *SimplePriorityQueue) IsEmpty() bool {
+	return len(s.q) == 0
+}
+
+func (s *SimplePriorityQueue) remove(i int) {
+	s.q[i] = s.q[len(s.q)-1]
 	s.q = s.q[:len(s.q)-1]
 }

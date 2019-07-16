@@ -15,6 +15,7 @@ type Neighbour struct {
 type PriorityQueue interface {
 	Insert(string)
 	ExtractMin(map[string]int) string
+	IsEmpty() bool
 }
 
 type Dijkstra struct {
@@ -34,13 +35,11 @@ func New(pq PriorityQueue) *Dijkstra {
 func (d *Dijkstra) ShortestPath(graph map[string]Vertex) map[string]int {
 	d.setupShortestAndPred(graph)
 	d.setupQ(graph)
-	done := len(graph)
-	for done != 0 {
-		u := d.q.ExtractMin(d.shortest) //TODO
+	for !d.q.IsEmpty() {
+		u := d.q.ExtractMin(d.shortest)
 		for _, neighbour := range graph[u].Neighbours {
-			relax(d.shortest, d.pred, graph[u], neighbour)
+			d.relax(graph[u], neighbour)
 		}
-		done--
 	}
 	return d.shortest
 }
@@ -59,8 +58,8 @@ func (d *Dijkstra) setupQ(graph map[string]Vertex) {
 	}
 }
 
-func relax(shortest map[string]int, pred map[string]string, u Vertex, v Neighbour) {
-	if shortest[u.Name]+v.Weight < shortest[v.Name] {
-		shortest[v.Name] = shortest[u.Name] + v.Weight
+func (d *Dijkstra) relax(u Vertex, v Neighbour) {
+	if d.shortest[u.Name]+v.Weight < d.shortest[v.Name] {
+		d.shortest[v.Name] = d.shortest[u.Name] + v.Weight
 	}
 }
